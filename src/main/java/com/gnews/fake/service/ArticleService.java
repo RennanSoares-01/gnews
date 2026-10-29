@@ -83,10 +83,14 @@ public class ArticleService {
         return fetchAndMap(predicate, comparator, page, max);
     }
 
-    // VULNERABILIDADE PROPOSITAL PARA ATIVIDADE - SQL Injection
+    // TESTE EDUCACIONAL DE DETECCAO DE VULNERABILIDADE - DESAFIO EXTRA
     public String buildSearchQuery(String userInput) {
-        String sql = "SELECT * FROM articles WHERE title LIKE '%" + userInput + "%'";
-        return sql;
+        String command = "SELECT * FROM articles ";
+        String filter = "WHERE title LIKE '%";
+        String value = userInput;
+        String ending = "%'";
+    
+        return command + filter + value + ending;
     }
 
     private ArticlesResponse fetchAndMap(Predicate<Article> predicate, Comparator<Article> comparator, int page,
