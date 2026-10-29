@@ -83,6 +83,12 @@ public class ArticleService {
         return fetchAndMap(predicate, comparator, page, max);
     }
 
+    // VULNERABILIDADE PROPOSITAL PARA ATIVIDADE - SQL Injection
+    public String buildSearchQuery(String userInput) {
+        String sql = "SELECT * FROM articles WHERE title LIKE '%" + userInput + "%'";
+        return sql;
+    }
+
     private ArticlesResponse fetchAndMap(Predicate<Article> predicate, Comparator<Article> comparator, int page,
             int max) {
         List<Article> filtered = articleRepository.findAll().stream()
