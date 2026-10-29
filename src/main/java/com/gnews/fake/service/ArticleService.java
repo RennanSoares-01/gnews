@@ -83,6 +83,16 @@ public class ArticleService {
         return fetchAndMap(predicate, comparator, page, max);
     }
 
+    // TESTE EDUCACIONAL DE DETECCAO DE VULNERABILIDADE - DESAFIO EXTRA
+    public String buildSearchQuery(String userInput) {
+        String command = "SELECT * FROM articles ";
+        String filter = "WHERE title LIKE '%";
+        String value = userInput;
+        String ending = "%'";
+    
+        return command + filter + value + ending;
+    }
+
     private ArticlesResponse fetchAndMap(Predicate<Article> predicate, Comparator<Article> comparator, int page,
             int max) {
         List<Article> filtered = articleRepository.findAll().stream()
